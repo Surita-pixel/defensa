@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organigrama USAR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 110%;
+        }
+
+        .organigrama {
+            display: flex;
+            justify-content: center;
+        }
+
+        .organigrama ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .organigrama li {
+            text-align: center;
+            list-style-type: none;
+            padding: 20px 5px;
+            position: relative;
+        }
+
+        .organigrama li::before,
+        .organigrama li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 1px solid #ccc;
+            width: 50%;
+            height: 20px;
+        }
+
+        .organigrama li::after {
+            right: auto;
+            left: 50%;
+            border-left: 1px solid #ccc;
+        }
+
+        .organigrama li:only-child::after,
+        .organigrama li:only-child::before {
+            display: none;
+        }
+
+        .organigrama li:first-child::before,
+        .organigrama li:last-child::after {
+            border: 0 none;
+        }
+
+        .organigrama li:last-child::before {
+            border-right: 1px solid #ccc;
+        }
+
+        .organigrama ul ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 1px solid #ccc;
+            width: 0;
+            height: 20px;
+        }
+
+        .organigrama li div {
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 12px;
+            display: inline-block;
+            min-width: 80px;
+            min-height: 30px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            transition: all 0.5s;
+        }
+
+        .organigrama li div:hover {
+            background: #e6e6e6;
+            color: #000;
+            border: 1px solid #94a0b4;
+        }
+
+        .grupo-intervencion {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .grupo-intervencion>ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .vehiculos {
+            margin-top: 50px;
+        }
+
+        .vehiculos ul {
+            padding-left: 20px;
+        }
+
+        .rescatista-slot {
+            cursor: pointer;
+        }
+
+        .rescatista-slot:hover {
+            background-color: #e0e0e0;
+        }
+
+        .rescatista-slot.asignado {
+            background-color: #a0ffa0;
+        }
+
+        .seleccion-voluntarios {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="seleccion-voluntarios">
+        <h3>Seleccionar Voluntario</h3>
+        <select id="selector-voluntarios">
+            <option value="">Seleccione un voluntario</option>
+            {% for voluntario in voluntarios %}
+            <option value="{{ voluntario.pk }}">{{ voluntario.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="organigrama">
+        <ul>
+            <li>
+                <div>LIDER</div>
+                <ul>
+                    <li>
+                        <div>SEGURIDAD</div>
+                        <ul>
+                            <li>
+                                <div>AUXILIAR SEGURIDAD</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>PLANEACION</div>
+                    </li>
+                    <li>
+                        <div>LOGISTICA</div>
+                        <ul>
+                            <li>
+                                <div>ASISTENTE LOGISTICA</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>OPERACIONES</div>
+                        <ul>
+                            <li class="grupo-intervencion">
+                                <div>GRUPO DE INTERVENCION 1</div>
+                                <ul>
+                                    <li>
+                                        <div>LIDER GRUPO 1</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 1</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 2</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 3</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 4</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 5</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 6</div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="grupo-intervencion">
+                                <div>GRUPO DE INTERVENCION 2</div>
+                                <ul>
+                                    <li>
+                                        <div>LIDER GRUPO 2</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 1</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 2</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 3</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 4</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 5</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 6</div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="grupo-intervencion">
+                                <div>GRUPO DE INTERVENCION 3</div>
+                                <ul>
+                                    <li>
+                                        <div>LIDER GRUPO 3</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 1</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 2</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 3</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 4</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 5</div>
+                                    </li>
+                                    <li>
+                                        <div class="rescatista-slot">RESCATISTA 6</div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>UNIDAD MEDICA</div>
+                        <ul>
+                            <li>
+                                <div>AUXILIAR ENFERMERIA</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>COMUNICACION</div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="vehiculos">
+        <h3>Vehículos</h3>
+        <ul>
+            <li>
+                VEHICULO 1 PLACA KSU483
+                <ul>
+                    <li>RESCATISTA 1</li>
+                    <li>RESCATISTA 2</li>
+                    <li>RESCATISTA 3</li>
+                    <li>RESCATISTA 4</li>
+                    <li>CHOFER</li>
+                </ul>
+            </li>
+            <li>
+                VEHICULO 2 PLACA XTW623
+                <ul>
+                    <li>RESCATISTA 1</li>
+                    <li>RESCATISTA 2</li>
+                    <li>RESCATISTA 3</li>
+                    <li>RESCATISTA 4</li>
+                    <li>CHOFER</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectorVoluntarios = document.getElementById('selector-voluntarios');
+            const rescatistaSlots = document.querySelectorAll('.rescatista-slot');
+
+            let voluntarioSeleccionado = null;
+
+            selectorVoluntarios.addEventListener('change', function() {
+                voluntarioSeleccionado = this.value;
+                rescatistaSlots.forEach(slot => {
+                    if (!slot.classList.contains('asignado')) {
+                        slot.classList.toggle('rescatista-slot', !!voluntarioSeleccionado);
+                    }
+                });
+            });
+
+            rescatistaSlots.forEach(slot => {
+                slot.addEventListener('click', function() {
+                    if (voluntarioSeleccionado && !this.classList.contains('asignado')) {
+                        this.textContent = selectorVoluntarios.options[selectorVoluntarios.selectedIndex].text;
+                        this.classList.add('asignado');
+                        this.classList.remove('rescatista-slot');
+                        selectorVoluntarios.remove(selectorVoluntarios.selectedIndex);
+                        voluntarioSeleccionado = null;
+                        selectorVoluntarios.value = '';
+                    }
+                });
+            });
+
+            
+        });
+    </script>
+</body>
+
+</html>
