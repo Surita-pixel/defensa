@@ -1,0 +1,280 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.navbar {
+    background-color: #2c5282;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #d3e1f9;
+}
+.organigrama-container {
+    overflow: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    position: relative;
+}
+
+.organigrama {
+    transform-origin: top left;
+    transition: transform 0.3s ease;
+}
+
+.zoomable {
+    cursor: move;
+}
+
+.organigrama ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.organigrama li {
+    text-align: center;
+    list-style-type: none;
+    padding: 10px 2px;
+    position: relative;
+}
+
+.organigrama li::before,
+.organigrama li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 1px solid #94a3b8;
+    width: 50%;
+    height: 10px;
+}
+
+.organigrama li::after {
+    right: auto;
+    left: 50%;
+    border-left: 1px solid #94a3b8;
+}
+
+.organigrama li:only-child::after,
+.organigrama li:only-child::before {
+    display: none;
+}
+
+.organigrama li:first-child::before,
+.organigrama li:last-child::after {
+    border: 0 none;
+}
+
+.organigrama li:last-child::before {
+    border-right: 1px solid #94a3b8;
+}
+
+.organigrama ul ul::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    border-left: 1px solid #94a3b8;
+    width: 0;
+    height: 10px;
+}
+
+.organigrama ul ul {
+    margin-top: 10px;
+}
+
+.organigrama li div {
+    border: 1px solid #cbd5e1;
+    padding: 6px 8px;
+    text-decoration: none;
+    color: #1e293b;
+    font-size: 9px;
+    display: inline-block;
+    min-width: 60px;
+    min-height: 15px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.organigrama li div:hover {
+    background: #e2e8f0;
+    color: #000;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.grupo-intervencion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grupo-intervencion>ul {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 400px;
+}
+
+.grupo-intervencion>ul>li {
+    flex: 0 0 auto;
+    margin: 0 2px;
+}
+
+.vehiculos-container {
+    display: flex;
+    justify-content: center;
+}
+
+.vehiculos {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vehiculos h3 {
+    color: #2c5282;
+    margin-bottom: 15px;
+}
+
+.vehiculos ul {
+    padding-left: 20px;
+}
+
+.vehiculos li {
+    margin-bottom: 10px;
+}
+
+.rescatista-slot {
+    cursor: pointer;
+}
+
+.rescatista-slot:hover {
+    background-color: #edf2f7;
+}
+
+.rescatista-slot.asignado {
+    background-color: #c6f6d5;
+}
+
+.seleccion-voluntarios {
+    margin-top: 30px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.seleccion-voluntarios h3 {
+    color: #2c5282;
+    margin-bottom: 15px;
+}
+
+.seleccionable {
+    cursor: pointer;
+    background-color: #edf2f7;
+}
+
+.asignado {
+    background-color: #c6f6d5;
+}
+
+select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #cbd5e1;
+    background-color: #f8fafc;
+    font-size: 14px;
+    color: #4a5568;
+    width: 200px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.control-buttons button,
+.zoom-controls button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.control-buttons button:hover,
+.zoom-controls button:hover {
+    background-color: #45a049;
+}
+
+.seleccion-voluntarios {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.zoom-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.vehiculo {
+    border-collapse: collapse;
+    width: 200px;
+}
+
+.vehiculo th, .vehiculo td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.vehiculo th {
+    background-color: #f2f2f2;
+}

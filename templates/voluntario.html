@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle del Voluntario{% endblock %}
+
+{% block content %}
+    <h1>Detalle del Voluntario</h1>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ voluntario.nombre }}</td>
+        </tr>
+        <tr>
+            <th>Puesto</th>
+            <td>{{ voluntario.puesto }}</td>
+        </tr>
+        <tr>
+            <th>Edad</th>
+            <td>{{ voluntario.edad }}</td>
+        </tr>
+        <tr>
+            <th>Género</th>
+            <td>{{ voluntario.genero }}</td>
+        </tr>
+        <tr>
+            <th>Cédula</th>
+            <td>{{ voluntario.cedula }}</td>
+        </tr>
+        <tr>
+            <th>Componente</th>
+            <td>{{ voluntario.componente }}</td>
+        </tr>
+        <tr>
+            <th>Asignación Operacional</th>
+            <td>{{ voluntario.asignacion_operacional }}</td>
+        </tr>
+        <tr>
+            <th>EPS</th>
+            <td>{{ voluntario.eps }}</td>
+        </tr>
+        <tr>
+            <th>ARL</th>
+            <td>{{ voluntario.arl }}</td>
+        </tr>
+        <tr>
+            <th>RH</th>
+            <td>{{ voluntario.rh }}</td>
+        </tr>
+        <tr>
+            <th>Curso Básico</th>
+            <td>{{ voluntario.curso_basico|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <th>Curso SCI</th>
+            <td>{{ voluntario.curso_sci|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <th>Curso SVB</th>
+            <td>{{ voluntario.curso_svb|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <th>Curso CRECL</th>
+            <td>{{ voluntario.curso_crecl|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <th>Curso SVT</th>
+            <td>{{ voluntario.curso_svt|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <th>Curso MATPEL</th>
+            <td>{{ voluntario.curso_matpel|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <th>Curso MACOM</th>
+            <td>{{ voluntario.curso_macom|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <th>Curso REVERT</th>
+            <td>{{ voluntario.curso_revert|yesno:"Sí,No" }}</td>
+        </tr>
+        <tr>
+            <th>Curso BRA</th>
+            <td>{{ voluntario.curso_bra|yesno:"Sí,No" }}</td>
+        </tr>
+    </table>
+{% endblock %}

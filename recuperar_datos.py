@@ -12,14 +12,14 @@ from apps.integrantes.models import MiembroGrupoUSAR
 
 def import_data():
     # Lee el archivo Excel
-    df = pd.read_excel('PERSONAL USAR NORTE DE SANTANDER MAYO 8 2024 (1).xlsx', sheet_name='BOGOTA 2024')
+    df = pd.read_excel('PERSONAL USAR NORTE DE SANTANDER MAYO 8 2024 (2).xlsx', sheet_name='BOGOTA 2024')
     df = df.iloc[1:]
     
     # Reemplaza NaN con None
     df = df.where(pd.notnull(df), None)
     
     lista_diccionarios = df.to_dict(orient='records')
-
+    print(lista_diccionarios)
     for datos in lista_diccionarios:
         cedula = datos['CEDULA']
         if pd.isna(cedula):  
@@ -44,5 +44,5 @@ def import_data():
     print('Datos importados exitosamente')
 
 if __name__ == "__main__":
-    file_path = 'PERSONAL USAR NORTE DE SANTANDER MAYO 8 2024 (1).xlsx'  # Reemplaza con la ruta real de tu archivo
+    file_path = 'PERSONAL USAR NORTE DE SANTANDER MAYO 8 2024 (2).xlsx'  # Reemplaza con la ruta real de tu archivo
     import_data()
