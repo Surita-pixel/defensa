@@ -1,13 +1,10 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organigrama USAR</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
-
 </head>
 
 <body>
@@ -22,193 +19,320 @@
                 <button id="zoom-out" style="width: 100px; padding: 10px; margin: 5px; height: 40px;">- Zoom</button>
             </div>
         </div>
-        <h3>Seleccionar Voluntario</h3>
-        <select id="selector-voluntarios">
-            <option value="">Seleccione un voluntario</option>
-            {% for voluntario in voluntarios %}
-            <option value="{{ voluntario.pk }}">{{ voluntario.nombre }}</option>
-            {% endfor %}
-        </select>
+        <div class="selects-container">
+            <div class="select-group">
+                <h3>Seleccionar Voluntario</h3>
+                <select id="selector-voluntarios" data-categoria="operaciones">
+                    <option value="">Seleccione un voluntario</option>
+                    {% for voluntario in voluntarios_busqueda_rescate %}
+                    <option value="{{ voluntario.pk }}">{{ voluntario.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="select-group">
+                <h3>Seguridad</h3>
+                <select id="selector-seguridad" data-categoria="seguridad">
+                    <option value="">Seleccione personal de seguridad</option>
+                    {% for voluntario in voluntarios_seguridad %}
+                    <option value="{{ voluntario.pk }}">{{ voluntario.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="select-group">
+                <h3>Planeación</h3>
+                <select id="selector-planeacion" data-categoria="planeacion">
+                    <option value="">Seleccione personal de planeación</option>
+                    {% for voluntario in voluntarios_planeacion %}
+                    <option value="{{ voluntario.pk }}">{{ voluntario.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="select-group">
+                <h3>Logística</h3>
+                <select id="selector-logistica" data-categoria="logistica">
+                    <option value="">Seleccione personal de logística</option>
+                    {% for voluntario in voluntarios_logistica %}
+                    <option value="{{ voluntario.pk }}">{{ voluntario.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="select-group">
+                <h3>Operaciones</h3>
+                <select id="selector-operaciones" data-categoria="operaciones">
+                    <option value="">Seleccione personal de operaciones</option>
+                    {% for voluntario in voluntarios_operaciones %}
+                    <option value="{{ voluntario.pk }}">{{ voluntario.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="select-group">
+                <h3>Unidad Médica</h3>
+                <select id="selector-unidad-medica" data-categoria="unidad-medica">
+                    <option value="">Seleccione personal médico</option>
+                    {% for voluntario in voluntarios_unidad_medica %}
+                    <option value="{{ voluntario.pk }}">{{ voluntario.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="select-group">
+                <h3>Comunicación</h3>
+                <select id="selector-comunicacion" data-categoria="comunicacion">
+                    <option value="">Seleccione personal de comunicación</option>
+                    {% for voluntario in voluntarios_comunicacion %}
+                    <option value="{{ voluntario.pk }}">{{ voluntario.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
     </div>
 
     <div class="organigrama-container">
         <div class="organigrama">
             <ul>
                 <li>
-                    <div>LIDER</div>
+                    <div id="lider">LIDER</div>
                     <ul>
                         <li>
-                            <div>SEGURIDAD</div>
+                            <div id="seguridad">SEGURIDAD</div>
                             <ul>
                                 <li>
-                                    <div>AUXILIAR SEGURIDAD</div>
+                                    <div id="auxiliar-seguridad">AUXILIAR SEGURIDAD</div>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <div>PLANEACION</div>
+                            <div id="planeacion">PLANEACION</div>
                         </li>
                         <li>
-                            <div>LOGISTICA</div>
+                            <div id="logistica">LOGISTICA</div>
                             <ul>
                                 <li>
-                                    <div>ASISTENTE LOGISTICA</div>
+                                    <div id="asistente-logistica">ASISTENTE LOGISTICA</div>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <div>OPERACIONES</div>
+                            <div id="operaciones">OPERACIONES</div>
                             <ul>
                                 <li class="grupo-intervencion">
-                                    <div>GRUPO DE INTERVENCION 1</div>
+                                    <div id="grupo-intervencion-1">GRUPO DE INTERVENCION 1</div>
                                     <ul>
                                         <li>
-                                            <div>LIDER GRUPO 1</div>
+                                            <div id="lider-grupo-1">LIDER GRUPO 1</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 1</div>
+                                            <div id="rescatista-1-grupo-1">RESCATISTA 1</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 2</div>
+                                            <div id="rescatista-2-grupo-1">RESCATISTA 2</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 3</div>
+                                            <div id="rescatista-3-grupo-1">RESCATISTA 3</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 4</div>
+                                            <div id="rescatista-4-grupo-1">RESCATISTA 4</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 5</div>
+                                            <div id="rescatista-5-grupo-1">RESCATISTA 5</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 6</div>
+                                            <div id="rescatista-6-grupo-1">RESCATISTA 6</div>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="grupo-intervencion">
-                                    <div>GRUPO DE INTERVENCION 2</div>
+                                    <div id="grupo-intervencion-2">GRUPO DE INTERVENCION 2</div>
                                     <ul>
                                         <li>
-                                            <div>LIDER GRUPO 2</div>
+                                            <div id="lider-grupo-2">LIDER GRUPO 2</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 1</div>
+                                            <div id="rescatista-1-grupo-2">RESCATISTA 1</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 2</div>
+                                            <div id="rescatista-2-grupo-2">RESCATISTA 2</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 3</div>
+                                            <div id="rescatista-3-grupo-2">RESCATISTA 3</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 4</div>
+                                            <div id="rescatista-4-grupo-2">RESCATISTA 4</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 5</div>
+                                            <div id="rescatista-5-grupo-2">RESCATISTA 5</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 6</div>
+                                            <div id="rescatista-6-grupo-2">RESCATISTA 6</div>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="grupo-intervencion">
-                                    <div>GRUPO DE INTERVENCION 3</div>
+                                    <div id="grupo-intervencion-3">GRUPO DE INTERVENCION 3</div>
                                     <ul>
                                         <li>
-                                            <div>LIDER GRUPO 3</div>
+                                            <div id="lider-grupo-3">LIDER GRUPO 3</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 1</div>
+                                            <div id="rescatista-1-grupo-3">RESCATISTA 1</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 2</div>
+                                            <div id="rescatista-2-grupo-3">RESCATISTA 2</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 3</div>
+                                            <div id="rescatista-3-grupo-3">RESCATISTA 3</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 4</div>
+                                            <div id="rescatista-4-grupo-3">RESCATISTA 4</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 5</div>
+                                            <div id="rescatista-5-grupo-3">RESCATISTA 5</div>
                                         </li>
                                         <li>
-                                            <div>RESCATISTA 6</div>
+                                            <div id="rescatista-6-grupo-3">RESCATISTA 6</div>
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <div>UNIDAD MEDICA</div>
+                            <div id="unidad-medica">UNIDAD MEDICA</div>
                             <ul>
                                 <li>
-                                    <div>AUXILIAR ENFERMERIA</div>
+                                    <div id="auxiliar-enfermeria">AUXILIAR ENFERMERIA</div>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <div>COMUNICACION</div>
+                            <div id="comunicacion">COMUNICACION</div>
                         </li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
-
     <div class="vehiculos-container">
         <div class="vehiculos">
-            <table class="vehiculo">
-                <thead>
-                    <tr>
-                        <th colspan="2">VEHICULO 1 PLACA KSU483</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>RESCATISTA 1</td>
-                    </tr>
-                    <tr>
-                        <td>RESCATISTA 2</td>
-                    </tr>
-                    <tr>
-                        <td>RESCATISTA 3</td>
-                    </tr>
-                    <tr>
-                        <td>RESCATISTA 4</td>
-                    </tr>
-                    <tr>
-                        <td>CHOFER</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table class="vehiculo">
-                <thead>
-                    <tr>
-                        <th colspan="2">VEHICULO 2 PLACA XTW623</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>RESCATISTA 1</td>
-                    </tr>
-                    <tr>
-                        <td>RESCATISTA 2</td>
-                    </tr>
-                    <tr>
-                        <td>RESCATISTA 3</td>
-                    </tr>
-                    <tr>
-                        <td>RESCATISTA 4</td>
-                    </tr>
-                    <tr>
-                        <td>CHOFER</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-rw">
+                <table class="vehiculo" id="vehiculo1">
+                    <thead>
+                        <tr>
+                            <th colspan="2">VEHICULO 1 PLACA KSU483</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="vehiculo1-lider" data-vehiculo="lider-grupo-1">LIDER GRUPO 1</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo1-rescatista1" data-vehiculo="rescatista-1-grupo-1">RESCATISTA 1</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo1-rescatista2" data-vehiculo="rescatista-2-grupo-1">RESCATISTA 2</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo1-rescatista3" data-vehiculo="rescatista-3-grupo-1">RESCATISTA 3</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo1-rescatista4" data-vehiculo="rescatista-4-grupo-1">RESCATISTA 4</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo1-rescatista5" data-vehiculo="rescatista-5-grupo-1">RESCATISTA 5</td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <table class="vehiculo" id="vehiculo2">
+                    <thead>
+                        <tr>
+                            <th colspan="2">VEHICULO 2 PLACA XTW623</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="vehiculo2-lider" data-vehiculo="lider-grupo-2">LIDER GRUPO 2</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo2-rescatista1" data-vehiculo="rescatista-1-grupo-2">RESCATISTA 1</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo2-rescatista2" data-vehiculo="rescatista-2-grupo-2">RESCATISTA 2</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo2-rescatista3" data-vehiculo="rescatista-3-grupo-2">RESCATISTA 3</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo2-rescatista4" data-vehiculo="rescatista-4-grupo-2">RESCATISTA 4</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="vehiculo" id="vehiculo3">
+                    <thead>
+                        <tr>
+                            <th colspan="2">VEHICULO 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="vehiculo3-seguridad" data-vehiculo="seguridad">SEGURIDAD</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo3-logistica" data-vehiculo="logistica">LOGISTICA</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo3-asistente-logistica" data-vehiculo="asistente-logistica">ASISTENTE LOGISTICA</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <div class="table-rw">
+                <table class="vehiculo" id="vehiculo4">
+                    <thead>
+                        <tr>
+                            <th colspan="2">VEHICULO 4</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="vehiculo4-lider" data-vehiculo="lider-grupo-3">LIDER GRUPO 3</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo4-rescatista1" data-vehiculo="rescatista-1-grupo-3">RESCATISTA 1</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo4-rescatista2" data-vehiculo="rescatista-2-grupo-3">RESCATISTA 2</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo4-rescatista3" data-vehiculo="rescatista-3-grupo-3">RESCATISTA 3</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="vehiculo" id="vehiculo5">
+                    <thead>
+                        <tr>
+                            <th colspan="2">VEHICULO 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="vehiculo5-comunicacion" data-vehiculo="comunicacion">COMUNICACION</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo5-logistica" data-vehiculo="logistica">LOGISTICA</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo5-unidad-medica" data-vehiculo="unidad-medica">UNIDAD MEDICA</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo5-auxiliar-enfermeria" data-vehiculo="auxiliar-enfermeria">AUXILIAR ENFERMERIA</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
         </div>
     </div>
+    
     <script src="{%static 'script.js'%}"></script>
 </body>
 

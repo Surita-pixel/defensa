@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">{% if miembro %}Editar{% else %}Crear{% endif %} Miembro USAR</h2>
+
+    <form method="post" class="usar-form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" value="{{ miembro.nombre|default_if_none:'' }}" required>
+            {% if form.nombre.errors %}
+            <div class="error-message">
+                {% for error in form.nombre.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="puesto">Puesto:</label>
+            <input type="text" id="puesto" name="puesto" value="{{ miembro.puesto|default_if_none:'' }}">
+            {% if form.puesto.errors %}
+            <div class="error-message">
+                {% for error in form.puesto.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" value="{{ miembro.edad|default_if_none:'' }}">
+            {% if form.edad.errors %}
+            <div class="error-message">
+                {% for error in form.edad.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="genero">Género:</label>
+            <input type="text" id="genero" name="genero" value="{{ miembro.genero|default_if_none:'' }}">
+            {% if form.genero.errors %}
+            <div class="error-message">
+                {% for error in form.genero.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="cedula">Cédula:</label>
+            <input type="text" id="cedula" name="cedula" value="{{ miembro.cedula|default_if_none:'' }}">
+            {% if form.cedula.errors %}
+            <div class="error-message">
+                {% for error in form.cedula.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="componente">Componente:</label>
+            <input type="text" id="componente" name="componente" value="{{ miembro.componente|default_if_none:'' }}">
+            {% if form.componente.errors %}
+            <div class="error-message">
+                {% for error in form.componente.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="asignacion_operacional">Asignación Operacional:</label>
+            <input type="text" id="asignacion_operacional" name="asignacion_operacional" value="{{ miembro.asignacion_operacional|default_if_none:'' }}">
+            {% if form.asignacion_operacional.errors %}
+            <div class="error-message">
+                {% for error in form.asignacion_operacional.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="eps">EPS:</label>
+            <input type="text" id="eps" name="eps" value="{{ miembro.eps|default_if_none:'' }}">
+            {% if form.eps.errors %}
+            <div class="error-message">
+                {% for error in form.eps.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="arl">ARL:</label>
+            <input type="text" id="arl" name="arl" value="{{ miembro.arl|default_if_none:'' }}">
+            {% if form.arl.errors %}
+            <div class="error-message">
+                {% for error in form.arl.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="rh">RH:</label>
+            <input type="text" id="rh" name="rh" value="{{ miembro.rh|default_if_none:'' }}">
+            {% if form.rh.errors %}
+            <div class="error-message">
+                {% for error in form.rh.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <h3 class="courses-title">Cursos</h3>
+
+        <div class="courses-container">
+            <div class="course-item">
+                <input type="checkbox" id="curso_basico" name="curso_basico" {% if miembro.curso_basico %}checked{% endif %}>
+                <label for="curso_basico">Curso Básico</label>
+                {% if form.curso_basico.errors %}
+                <div class="error-message">
+                    {% for error in form.curso_basico.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="course-item">
+                <input type="checkbox" id="curso_sci" name="curso_sci" {% if miembro.curso_sci %}checked{% endif %}>
+                <label for="curso_sci">Curso SCI</label>
+                {% if form.curso_sci.errors %}
+                <div class="error-message">
+                    {% for error in form.curso_sci.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="course-item">
+                <input type="checkbox" id="curso_svb" name="curso_svb" {% if miembro.curso_svb %}checked{% endif %}>
+                <label for="curso_svb">Curso SVB</label>
+                {% if form.curso_svb.errors %}
+                <div class="error-message">
+                    {% for error in form.curso_svb.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="course-item">
+                <input type="checkbox" id="curso_crecl" name="curso_crecl" {% if miembro.curso_crecl %}checked{% endif %}>
+                <label for="curso_crecl">Curso CRECL</label>
+                {% if form.curso_crecl.errors %}
+                <div class="error-message">
+                    {% for error in form.curso_crecl.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="course-item">
+                <input type="checkbox" id="curso_svt" name="curso_svt" {% if miembro.curso_svt %}checked{% endif %}>
+                <label for="curso_svt">Curso SVT</label>
+                {% if form.curso_svt.errors %}
+                <div class="error-message">
+                    {% for error in form.curso_svt.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="course-item">
+                <input type="checkbox" id="curso_matpel" name="curso_matpel" {% if miembro.curso_matpel %}checked{% endif %}>
+                <label for="curso_matpel">Curso MATPEL</label>
+                {% if form.curso_matpel.errors %}
+                <div class="error-message">
+                    {% for error in form.curso_matpel.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="course-item">
+                <input type="checkbox" id="curso_macom" name="curso_macom" {% if miembro.curso_macom %}checked{% endif %}>
+                <label for="curso_macom">Curso MACOM</label>
+                {% if form.curso_macom.errors %}
+                <div class="error-message">
+                    {% for error in form.curso_macom.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="course-item">
+                <input type="checkbox" id="curso_revert" name="curso_revert" {% if miembro.curso_revert %}checked{% endif %}>
+                <label for="curso_revert">Curso REVERT</label>
+                {% if form.curso_revert.errors %}
+                <div class="error-message">
+                    {% for error in form.curso_revert.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="course-item">
+                <input type="checkbox" id="curso_bra" name="curso_bra" {% if miembro.curso_bra %}checked{% endif %}>
+                <label for="curso_bra">Curso BRA</label>
+                {% if form.curso_bra.errors %}
+                <div class="error-message">
+                    {% for error in form.curso_bra.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Guardar</button>
+    </form>
+</div>
+{% endblock %}

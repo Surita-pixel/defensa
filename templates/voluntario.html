@@ -3,7 +3,8 @@
 {% block title %}Detalle del Voluntario{% endblock %}
 
 {% block content %}
-    <h1>Detalle del Voluntario</h1>
+<h1>Detalle del Voluntario</h1>
+<a href="{% url 'editar_miembro' voluntario.pk %}" class="edit-button">Editar Voluntario</a>    
     <table>
         <tr>
             <th>Nombre</th>

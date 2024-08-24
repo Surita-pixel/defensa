@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const selectorVoluntarios = document.getElementById('selector-voluntarios');
+    const selectores = document.querySelectorAll('.select-group select');
     const todosLosSlots = document.querySelectorAll('.organigrama div, .vehiculo td');
     let voluntarioSeleccionado = null;
+    let categoriaSeleccionada = null;
     const organigramaContainer = document.querySelector('.organigrama-container');
     const organigrama = document.querySelector('.organigrama');
     let scale = 1;
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let startX, startY, scrollLeft, scrollTop;
     const zoomInButton = document.getElementById('zoom-in');
     const zoomOutButton = document.getElementById('zoom-out');
+    const vehiculos = document.querySelectorAll('.vehiculo');
 
     zoomInButton.addEventListener('click', function () {
         scale += 0.1;
@@ -17,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     zoomOutButton.addEventListener('click', function () {
         scale -= 0.1;
-        if (scale < 0.5) scale = 0.5; // Prevenir zoom out excesivo
+        if (scale < 0.5) scale = 0.5;
         applyZoom();
     });
 
@@ -26,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
         organigramaContainer.classList.toggle('zoomable', scale > 1);
     }
 
-    // Funcionalidad de arrastre
     organigramaContainer.addEventListener('mousedown', startDragging);
     organigramaContainer.addEventListener('mousemove', drag);
     organigramaContainer.addEventListener('mouseup', stopDragging);
@@ -57,15 +58,38 @@ document.addEventListener('DOMContentLoaded', function () {
         isDragging = false;
     }
 
-
-    selectorVoluntarios.addEventListener('change', function () {
-        voluntarioSeleccionado = this.value;
-        todosLosSlots.forEach(slot => {
-            if (!slot.classList.contains('asignado')) {
-                slot.classList.toggle('seleccionable', !!voluntarioSeleccionado);
-            }
+    selectores.forEach(selector => {
+        selector.addEventListener('change', function () {
+            voluntarioSeleccionado = this.value;
+            categoriaSeleccionada = this.dataset.categoria;
+            todosLosSlots.forEach(slot => {
+                if (!slot.classList.contains('asignado')) {
+                    const esSeleccionable = esSlotSeleccionable(slot, categoriaSeleccionada);
+                    slot.classList.toggle('seleccionable', esSeleccionable && !!voluntarioSeleccionado);
+                }
+            });
         });
     });
+
+    function esSlotSeleccionable(slot, categoria) {
+        const textoSlot = slot.dataset.textoOriginal.toUpperCase();
+        switch (categoria) {
+            case 'operaciones':
+                return textoSlot.includes('RESCATISTA') || textoSlot.includes('LIDER GRUPO') || textoSlot.includes('OPERACIONES');
+            case 'seguridad':
+                return textoSlot.includes('SEGURIDAD') || textoSlot.includes('AUXILIAR SEGURIDAD');
+            case 'planeacion':
+                return textoSlot.includes('PLANEACION');
+            case 'logistica':
+                return textoSlot.includes('LOGISTICA') || textoSlot.includes('ASISTENTE LOGISTICA');
+            case 'unidad-medica':
+                return textoSlot.includes('UNIDAD MEDICA') || textoSlot.includes('AUXILIAR ENFERMERIA');
+            case 'comunicacion':
+                return textoSlot.includes('COMUNICACION');
+            default:
+                return false;
+        }
+    }
 
     todosLosSlots.forEach(slot => {
         slot.dataset.textoOriginal = slot.textContent.trim();
@@ -73,8 +97,9 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
         slot.addEventListener('click', function () {
-            if (voluntarioSeleccionado && !this.classList.contains('asignado')) {
-                const voluntarioNombre = selectorVoluntarios.options[selectorVoluntarios.selectedIndex].text;
+            if (voluntarioSeleccionado && !this.classList.contains('asignado') && esSlotSeleccionable(this, categoriaSeleccionada)) {
+                const selectorActual = document.querySelector(`select[data-categoria="${categoriaSeleccionada}"]`);
+                const voluntarioNombre = selectorActual.options[selectorActual.selectedIndex].text;
                 this.dataset.voluntarioId = voluntarioSeleccionado;
                 this.dataset.voluntarioNombre = voluntarioNombre;
 
@@ -89,32 +114,63 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 this.classList.add('asignado');
                 this.classList.remove('seleccionable');
-                selectorVoluntarios.remove(selectorVoluntarios.selectedIndex);
+                selectorActual.remove(selectorActual.selectedIndex);
                 voluntarioSeleccionado = null;
-                selectorVoluntarios.value = '';
+                categoriaSeleccionada = null;
+                selectorActual.value = '';
+
+                // Actualizar las tablas de vehículos
+                const celdaVehiculo = document.querySelector(`td[data-vehiculo="${this.id}"]`);
+                if (celdaVehiculo) {
+                    celdaVehiculo.dataset.voluntarioId = this.dataset.voluntarioId;
+                    celdaVehiculo.dataset.voluntarioNombre = this.dataset.voluntarioNombre;
+
+                    celdaVehiculo.innerHTML = `${voluntarioNombre}`;
+                }
 
             } else if (this.classList.contains('asignado')) {
                 const voluntarioId = this.dataset.voluntarioId;
                 const voluntarioNombre = this.dataset.voluntarioNombre;
 
-                const nuevaOpcion = new Option(voluntarioNombre, voluntarioId);
-                selectorVoluntarios.add(nuevaOpcion);
+                // Encontrar el selector correcto basado en el texto del slot
+                let selectorCorrespondiente;
+                for (const selector of selectores) {
+                    if (esSlotSeleccionable(this, selector.dataset.categoria)) {
+                        selectorCorrespondiente = selector;
+                        break;
+                    }
+                }
 
-                const opciones = Array.from(selectorVoluntarios.options).slice(1);
-                opciones.sort((a, b) => a.text.localeCompare(b.text));
-                selectorVoluntarios.innerHTML = '<option value="">Seleccione un voluntario</option>';
-                opciones.forEach(opcion => selectorVoluntarios.add(opcion));
+                if (selectorCorrespondiente) {
+                    const nuevaOpcion = new Option(voluntarioNombre, voluntarioId);
+                    selectorCorrespondiente.add(nuevaOpcion);
+
+                    const opciones = Array.from(selectorCorrespondiente.options).slice(1);
+                    opciones.sort((a, b) => a.text.localeCompare(b.text));
+                    selectorCorrespondiente.innerHTML = '<option value="">Seleccione un voluntario</option>';
+                    opciones.forEach(opcion => selectorCorrespondiente.add(opcion));
+                }
 
                 this.textContent = this.dataset.textoOriginal;
                 this.classList.remove('asignado');
                 delete this.dataset.voluntarioId;
                 delete this.dataset.voluntarioNombre;
+
+                // Remover de las tablas de vehículos
+                const celdaVehiculo = document.querySelector(`td[data-vehiculo="${this.id}"]`);
+                if (celdaVehiculo) {
+                    celdaVehiculo.innerHTML = '';
+                    delete celdaVehiculo.dataset.voluntarioId;
+                    delete celdaVehiculo.dataset.voluntarioNombre;
+                }
+
             }
         });
     });
+
     const printButton = document.getElementById('print');
     printButton.addEventListener('click', function () {
         window.print();
     });
-});
 
+});

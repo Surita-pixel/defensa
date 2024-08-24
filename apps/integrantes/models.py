@@ -11,7 +11,15 @@ class MiembroGrupoUSAR(models.Model):
     eps = models.CharField(max_length=50, null=True)
     arl = models.CharField(max_length=50, null=True)
     rh = models.CharField(max_length=100, null=True)
-
+    curso_basico = models.BooleanField(default=False)
+    curso_sci = models.BooleanField(default=False)
+    curso_svb = models.BooleanField(default=False)
+    curso_crecl = models.BooleanField(default=False)
+    curso_svt = models.BooleanField(default=False)
+    curso_matpel = models.BooleanField(default=False)
+    curso_macom = models.BooleanField(default=False)
+    curso_revert = models.BooleanField(default=False)
+    curso_bra = models.BooleanField(default=False)
     # # Vacunas
     # fiebre_amarilla = models.BooleanField(default=False)
     # tetano = models.BooleanField(default=False)
@@ -38,15 +46,7 @@ class MiembroGrupoUSAR(models.Model):
     # lugar_nacimiento = models.CharField(max_length=100, null=True)
     # licencia_conduccion_tipo = models.CharField(max_length=50, blank=True, null=True)
 
-    curso_basico = models.BooleanField(default=False)
-    curso_sci = models.BooleanField(default=False)
-    curso_svb = models.BooleanField(default=False)
-    curso_crecl = models.BooleanField(default=False)
-    curso_svt = models.BooleanField(default=False)
-    curso_matpel = models.BooleanField(default=False)
-    curso_macom = models.BooleanField(default=False)
-    curso_revert = models.BooleanField(default=False)
-    curso_bra = models.BooleanField(default=False)
+
     
     def __str__(self):
         return self.nombre

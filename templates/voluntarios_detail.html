@@ -17,7 +17,7 @@
         <tbody>
             {% for voluntario in voluntarios %}
             <tr>
-                <td><a href="{% url 'voluntario_detail' voluntario.pk %}">{{ voluntario.nombre }}</a></td>
+                <td><a href="{% url 'voluntario_detail' voluntario.pk %}" style="text-decoration: none;">{{ voluntario.nombre }}</a></td>
                 <td>{{ voluntario.genero }}</td>
                 <td>{{ voluntario.cedula }}</td>
                 <td>{{ voluntario.componente }}</td>
