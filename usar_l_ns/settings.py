@@ -76,13 +76,10 @@ WSGI_APPLICATION = 'usar_l_ns.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'defensa',
-        'HOST':'localhost',
-        'PORT':5432,
-        'USER':'postgres',
-        'PASSWORD':'pokemon70'
-    }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',  # Path to your SQLite database file
+        'OPTIONS': {},
+    },
 }
 
 

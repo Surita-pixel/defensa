@@ -35,9 +35,9 @@ def import_data():
                 eps=datos['EPS'],
                 arl=datos['ARL'],
                 rh=datos['RH'],
-                direccion_domicilio=datos['DIRECCION DOMICILIO'],
-                telefono_celular=str(datos['TELEFONO CELULAR']),
-                email=datos['EMAIL'],
+                # direccion_domicilio=datos['DIRECCION DOMICILIO'],
+                # telefono_celular=str(datos['TELEFONO CELULAR']),
+                # email=datos['EMAIL'],
             )
             miembro_grupo_usar.save()
         
