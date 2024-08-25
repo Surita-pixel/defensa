@@ -406,3 +406,28 @@ select:focus {
 .table-rw{
     display: flex;
 }
+@media print {
+    .organigrama-container {
+        width: 100%;
+        height: auto;
+        page-break-after: always;
+    }
+
+    .vehiculo {
+        width: 100%;
+        height: auto;
+        page-break-before: always;
+        visibility: visible;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    /* Asegura que el organigrama esté en modo landscape y las tablas en portrait */
+    @page:first {
+        size: landscape;
+    }
+
+    @page {
+        size: portrait;
+    }
+}

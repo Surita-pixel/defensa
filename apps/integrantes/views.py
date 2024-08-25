@@ -1,11 +1,13 @@
+from django.core.exceptions import ValidationError
+from django.urls import reverse_lazy
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView
-from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
-from django.contrib import messages
-from django.db.models import Q
-from django.core.exceptions import ValidationError
 from django.db import IntegrityError
+from django.db.models import Q
+
+
 from .froms import MiembroForm
 
 from .import models
@@ -84,11 +86,9 @@ class MiembroGrupoUSARCreateView(CreateView):
 class MiembroGrupoUSARUpdateView(UpdateView):
     model = models.MiembroGrupoUSAR
     template_name = 'form_miembro.html'
-    fields = ['nombre', 'puesto', 'edad', 'genero', 'cedula', 'componente', 
-              'asignacion_operacional', 'eps', 'arl', 'rh', 'curso_basico', 
-              'curso_sci', 'curso_svb', 'curso_crecl', 'curso_svt', 
-              'curso_matpel', 'curso_macom', 'curso_revert', 'curso_bra']
+    form_class=MiembroForm
     success_url = reverse_lazy('voluntarios')
+    
 
     def form_valid(self, form):
         messages.success(self.request, 'Miembro actualizado exitosamente.')
@@ -99,6 +99,14 @@ class MiembroGrupoUSARUpdateView(UpdateView):
             for error in errors:
                 messages.error(self.request, f'Error en {field}: {error}')
         return super().form_invalid(form)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        miembro = self.get_object()  # Obtenemos el objeto que se está editando
+        context['miembro'] = miembro
+        return context
 
 
-# def deleteView(request)
+def eliminar_voluntario(request, pk):
+    voluntario = get_object_or_404(models.MiembroGrupoUSAR, pk=pk)
+    voluntario.delete()
+    return redirect('voluntarios')  

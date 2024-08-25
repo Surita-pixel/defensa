@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+{%load static%}
 
 {% block title %}Detalle de Voluntarios{% endblock %}
 
 {% block content %}
     <h1>Detalle de Voluntarios</h1>
+    <button class="submit-btn" style="width: 100px; padding: 10px; margin: 5px; height: 40px;" onclick="window.location.href='{% url 'crear_miembro' %}'">
+        Crear
+    </button>
+    
     <table>
         <thead>
             <tr>

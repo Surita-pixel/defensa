@@ -19,11 +19,12 @@
                 <button id="zoom-out" style="width: 100px; padding: 10px; margin: 5px; height: 40px;">- Zoom</button>
             </div>
         </div>
+        
         <div class="selects-container">
             <div class="select-group">
-                <h3>Seleccionar Voluntario</h3>
+                <h3>Seleccionar Rescatista</h3>
                 <select id="selector-voluntarios" data-categoria="operaciones">
-                    <option value="">Seleccione un voluntario</option>
+                    <option value="">Seleccione un rescatista</option>
                     {% for voluntario in voluntarios_busqueda_rescate %}
                     <option value="{{ voluntario.pk }}">{{ voluntario.nombre }}</option>
                     {% endfor %}
@@ -216,41 +217,35 @@
                 <table class="vehiculo" id="vehiculo1">
                     <thead>
                         <tr>
-                            <th colspan="2">VEHICULO 1 PLACA KSU483</th>
+                            <th colspan="2">VEHICULO 1 PLACA ABC123</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="vehiculo1-lider" data-vehiculo="lider-grupo-1">LIDER GRUPO 1</td>
+                            <td id="vehiculo1-lider" data-vehiculo="lider">LIDER</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo1-rescatista1" data-vehiculo="rescatista-1-grupo-1">RESCATISTA 1</td>
+                            <td id="vehiculo1-seguridad" data-vehiculo="seguridad">SEGURIDAD</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo1-rescatista2" data-vehiculo="rescatista-2-grupo-1">RESCATISTA 2</td>
+                            <td id="vehiculo1-planeacion" data-vehiculo="planeacion">PLANEACION</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo1-rescatista3" data-vehiculo="rescatista-3-grupo-1">RESCATISTA 3</td>
+                            <td id="vehiculo1-operaciones" data-vehiculo="operaciones">OPERACIONES</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo1-rescatista4" data-vehiculo="rescatista-4-grupo-1">RESCATISTA 4</td>
-                        </tr>
-                        <tr>
-                            <td id="vehiculo1-rescatista5" data-vehiculo="rescatista-5-grupo-1">RESCATISTA 5</td>
+                            <td id="vehiculo1-comunicacion" data-vehiculo="comunicacion">COMUNICACION</td>
                         </tr>
                     </tbody>
                 </table>
-    
+                
                 <table class="vehiculo" id="vehiculo2">
                     <thead>
                         <tr>
-                            <th colspan="2">VEHICULO 2 PLACA XTW623</th>
+                            <th colspan="2">VEHICULO 2 PLACA XYZ789</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td id="vehiculo2-lider" data-vehiculo="lider-grupo-2">LIDER GRUPO 2</td>
-                        </tr>
                         <tr>
                             <td id="vehiculo2-rescatista1" data-vehiculo="rescatista-1-grupo-2">RESCATISTA 1</td>
                         </tr>
@@ -263,72 +258,95 @@
                         <tr>
                             <td id="vehiculo2-rescatista4" data-vehiculo="rescatista-4-grupo-2">RESCATISTA 4</td>
                         </tr>
+                        <tr>
+                            <td id="vehiculo2-rescatista5" data-vehiculo="rescatista-5-grupo-2">RESCATISTA 5</td>
+                        </tr>
                     </tbody>
                 </table>
                 <table class="vehiculo" id="vehiculo3">
                     <thead>
                         <tr>
-                            <th colspan="2">VEHICULO 3</th>
+                            <th colspan="2">VEHICULO 3 PLACA XYZ123</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="vehiculo3-seguridad" data-vehiculo="seguridad">SEGURIDAD</td>
+                            <td id="vehiculo3-aux-seguridad" data-vehiculo="auxiliar-seguridad">AUXILIAR SEGURIDAD</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo3-logistica" data-vehiculo="logistica">LOGISTICA</td>
+                            <td id="vehiculo3-aux-logistica" data-vehiculo="asistente-logistica">AUXILIAR LOGISTICA</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo3-asistente-logistica" data-vehiculo="asistente-logistica">ASISTENTE LOGISTICA</td>
+                            <td id="vehiculo3-rescatista1" data-vehiculo="rescatista-1-grupo-3">RESCATISTA 1</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo3-rescatista2" data-vehiculo="rescatista-2-grupo-3">RESCATISTA 2</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo3-rescatista3" data-vehiculo="rescatista-3-grupo-3">RESCATISTA 3</td>
                         </tr>
                     </tbody>
                 </table>
+                
             </div>
     
             <div class="table-rw">
                 <table class="vehiculo" id="vehiculo4">
                     <thead>
                         <tr>
-                            <th colspan="2">VEHICULO 4</th>
+                            <th colspan="2">VEHICULO 4 PLACA ABC456</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="vehiculo4-lider" data-vehiculo="lider-grupo-3">LIDER GRUPO 3</td>
+                            <td id="vehiculo4-grupo2" data-vehiculo="grupo-intervencion-2">GRUPO 2</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo4-rescatista1" data-vehiculo="rescatista-1-grupo-3">RESCATISTA 1</td>
+                            <td id="vehiculo4-rescatista1" data-vehiculo="rescatista-1-grupo-2">RESCATISTA 1</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo4-rescatista2" data-vehiculo="rescatista-2-grupo-3">RESCATISTA 2</td>
+                            <td id="vehiculo4-rescatista2" data-vehiculo="rescatista-2-grupo-2">RESCATISTA 2</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo4-rescatista3" data-vehiculo="rescatista-3-grupo-3">RESCATISTA 3</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="vehiculo" id="vehiculo5">
-                    <thead>
-                        <tr>
-                            <th colspan="2">VEHICULO 5</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="vehiculo5-comunicacion" data-vehiculo="comunicacion">COMUNICACION</td>
+                            <td id="vehiculo4-rescatista3" data-vehiculo="rescatista-3-grupo-2">RESCATISTA 3</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo5-logistica" data-vehiculo="logistica">LOGISTICA</td>
-                        </tr>
-                        <tr>
-                            <td id="vehiculo5-unidad-medica" data-vehiculo="unidad-medica">UNIDAD MEDICA</td>
-                        </tr>
-                        <tr>
-                            <td id="vehiculo5-auxiliar-enfermeria" data-vehiculo="auxiliar-enfermeria">AUXILIAR ENFERMERIA</td>
+                            <td id="vehiculo4-rescatista4" data-vehiculo="rescatista-4-grupo-2">RESCATISTA 4</td>
                         </tr>
                     </tbody>
                 </table>
                 
+                <table class="vehiculo" id="vehiculo5">
+                    <thead>
+                        <tr>
+                            <th colspan="2">VEHICULO 5 PLACA DEF789</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="vehiculo5-chofer" data-vehiculo="logistica">CHOFER</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo5-logistica" data-vehiculo="logistica">LOGISTICA</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="vehiculo" id="vehiculo6">
+                    <thead>
+                        <tr>
+                            <th colspan="2">VEHICULO 6 PLACA GHI012</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="vehiculo6-unidad-medica" data-vehiculo="unidad-medica">UNIDAD MEDICA</td>
+                        </tr>
+                        <tr>
+                            <td id="vehiculo6-aux-enfermeria" data-vehiculo="auxiliar-enfermeria">AUXILIAR ENFERMERIA</td>
+                        </tr>
+                    </tbody>
+                </table>
+                                
             </div>
         </div>
     </div>

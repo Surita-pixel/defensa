@@ -12,6 +12,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const zoomOutButton = document.getElementById('zoom-out');
     const vehiculos = document.querySelectorAll('.vehiculo');
 
+    // Guardar el texto original de las celdas de vehículos
+    vehiculos.forEach(vehiculo => {
+        const celdas = vehiculo.querySelectorAll('td');
+        celdas.forEach(celda => {
+            celda.dataset.textoOriginal = celda.textContent.trim();
+        });
+    });
+
     zoomInButton.addEventListener('click', function () {
         scale += 0.1;
         applyZoom();
@@ -124,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (celdaVehiculo) {
                     celdaVehiculo.dataset.voluntarioId = this.dataset.voluntarioId;
                     celdaVehiculo.dataset.voluntarioNombre = this.dataset.voluntarioNombre;
-
+                    celdaVehiculo.dataset.textoOriginal = celdaVehiculo.dataset.textoOriginal || celdaVehiculo.textContent.trim();
                     celdaVehiculo.innerHTML = `${voluntarioNombre}`;
                 }
 
@@ -159,18 +167,38 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Remover de las tablas de vehículos
                 const celdaVehiculo = document.querySelector(`td[data-vehiculo="${this.id}"]`);
                 if (celdaVehiculo) {
-                    celdaVehiculo.innerHTML = '';
+                    celdaVehiculo.textContent = celdaVehiculo.dataset.textoOriginal || '';
                     delete celdaVehiculo.dataset.voluntarioId;
                     delete celdaVehiculo.dataset.voluntarioNombre;
                 }
-
             }
         });
     });
-
     const printButton = document.getElementById('print');
     printButton.addEventListener('click', function () {
+        // Guarda el contenido original
+        const bodyHTML = document.body.innerHTML;
+
+        // Crea un nuevo contenido solo con el organigrama
+        let printContent = '<div class="organigrama-container" style="page-break-after: always;">'
+            + document.querySelector('.organigrama-container').innerHTML
+            + '</div>';
+
+        // Agrega un salto de página antes de cada tabla y crea el contenido de impresión
+        document.querySelectorAll('.vehiculo').forEach(vehiculo => {
+            printContent += '<div class="vehiculo" style="page-break-before: always;">'
+                + vehiculo.outerHTML
+                + '</div>';
+        });
+
+        // Reemplaza el contenido del body
+        document.body.innerHTML = printContent;
+
+        // Imprime
         window.print();
+
+        // Restaura el contenido original
+        document.body.innerHTML = bodyHTML;
     });
 
 });

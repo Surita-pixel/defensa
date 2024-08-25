@@ -66,10 +66,17 @@
             </div>
             {% endif %}
         </div>
-
         <div class="form-group">
             <label for="componente">Componente:</label>
-            <input type="text" id="componente" name="componente" value="{{ miembro.componente|default_if_none:'' }}">
+            <select id="componente" name="componente">
+                <option value="SEGURIDAD" {% if miembro.componente == 'SEGURIDAD' %}selected{% endif %}>SEGURIDAD</option>
+                <option value="COMUNICACION" {% if miembro.componente == 'COMUNICACION' %}selected{% endif %}>COMUNICACION</option>
+                <option value="PLANEACION" {% if miembro.componente == 'PLANEACION' %}selected{% endif %}>PLANEACION</option>
+                <option value="LOGISTICO" {% if miembro.componente == 'LOGISTICO' %}selected{% endif %}>LOGISTICO</option>
+                <option value="OPERACIONES" {% if miembro.componente == 'OPERACIONES' %}selected{% endif %}>OPERACIONES</option>
+                <option value="UNIDAD MEDICA" {% if miembro.componente == 'UNIDAD MEDICA' %}selected{% endif %}>UNIDAD MEDICA</option>
+                <option value="BUSQUEDA Y RESCATE" {% if miembro.componente == 'BUSQUEDA Y RESCATE' %}selected{% endif %}>BUSQUEDA Y RESCATE</option>
+            </select>
             {% if form.componente.errors %}
             <div class="error-message">
                 {% for error in form.componente.errors %}
@@ -78,6 +85,7 @@
             </div>
             {% endif %}
         </div>
+        
 
         <div class="form-group">
             <label for="asignacion_operacional">Asignación Operacional:</label>
