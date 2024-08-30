@@ -8,6 +8,45 @@
 </head>
 
 <body>
+    <style>
+        @media print {
+
+            /* Configurar la orientación horizontal para el organigrama */
+            @page {
+                size: landscape;
+            }
+        
+            /* Mostrar el organigrama en la primera página */
+            .organigrama-container {
+                display: block;
+                position: relative;
+                left: 0;
+                top: 0;
+                width: 100%;
+                visibility: visible;
+                page-break-after: always; /* Rompe la página después del organigrama */
+            }
+        
+            /* Mostrar las tablas en la siguiente página */
+            .vehiculos-container {
+                display: block;
+                position: relative;
+                left: 0;
+                top: 0;
+                width: 100%;
+                visibility: visible;
+                page-break-before: always; /* Comienza en una nueva página */
+            }
+        
+            /* Ocultar otros elementos que no se deben imprimir */
+            .control-buttons,
+            .navbar,
+            .seleccion-voluntarios {
+                display: none;
+            }
+        }
+                
+    </style>
     <div class="navbar">
         <a href="{%url 'voluntarios'%}">Voluntarios</a>
     </div>
@@ -19,7 +58,7 @@
                 <button id="zoom-out" style="width: 100px; padding: 10px; margin: 5px; height: 40px;">- Zoom</button>
             </div>
         </div>
-        
+
         <div class="selects-container">
             <div class="select-group">
                 <h3>Seleccionar Rescatista</h3>
@@ -238,7 +277,7 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <table class="vehiculo" id="vehiculo2">
                     <thead>
                         <tr>
@@ -247,19 +286,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="vehiculo2-rescatista1" data-vehiculo="rescatista-1-grupo-2">RESCATISTA 1</td>
+                            <td id="vehiculo2-rescatista1" data-vehiculo="rescatista-1-grupo-1">RESCATISTA 1</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo2-rescatista2" data-vehiculo="rescatista-2-grupo-2">RESCATISTA 2</td>
+                            <td id="vehiculo2-rescatista2" data-vehiculo="rescatista-2-grupo-1">RESCATISTA 2</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo2-rescatista3" data-vehiculo="rescatista-3-grupo-2">RESCATISTA 3</td>
+                            <td id="vehiculo2-rescatista3" data-vehiculo="rescatista-3-grupo-1">RESCATISTA 3</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo2-rescatista4" data-vehiculo="rescatista-4-grupo-2">RESCATISTA 4</td>
+                            <td id="vehiculo2-rescatista4" data-vehiculo="rescatista-4-grupo-1">RESCATISTA 4</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo2-rescatista5" data-vehiculo="rescatista-5-grupo-2">RESCATISTA 5</td>
+                            <td id="vehiculo2-rescatista5" data-vehiculo="rescatista-5-grupo-1">RESCATISTA 5</td>
                         </tr>
                     </tbody>
                 </table>
@@ -287,9 +326,9 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
             </div>
-    
+
             <div class="table-rw">
                 <table class="vehiculo" id="vehiculo4">
                     <thead>
@@ -299,7 +338,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="vehiculo4-grupo2" data-vehiculo="grupo-intervencion-2">GRUPO 2</td>
+                            <td id="vehiculo4-grupo2" data-vehiculo="lider-grupo-2">LIDER GRUPO 2</td>
                         </tr>
                         <tr>
                             <td id="vehiculo4-rescatista1" data-vehiculo="rescatista-1-grupo-2">RESCATISTA 1</td>
@@ -315,7 +354,7 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <table class="vehiculo" id="vehiculo5">
                     <thead>
                         <tr>
@@ -324,7 +363,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="vehiculo5-chofer" data-vehiculo="logistica">CHOFER</td>
+                            <td id="vehiculo5-chofer">CHOFFER<BR> Bladimir Pérez</td>
                         </tr>
                         <tr>
                             <td id="vehiculo5-logistica" data-vehiculo="logistica">LOGISTICA</td>
@@ -342,15 +381,16 @@
                             <td id="vehiculo6-unidad-medica" data-vehiculo="unidad-medica">UNIDAD MEDICA</td>
                         </tr>
                         <tr>
-                            <td id="vehiculo6-aux-enfermeria" data-vehiculo="auxiliar-enfermeria">AUXILIAR ENFERMERIA</td>
+                            <td id="vehiculo6-aux-enfermeria" data-vehiculo="auxiliar-enfermeria">AUXILIAR ENFERMERIA
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-                                
+
             </div>
         </div>
     </div>
-    
+
     <script src="{%static 'script.js'%}"></script>
 </body>
 

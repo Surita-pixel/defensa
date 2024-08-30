@@ -177,28 +177,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const printButton = document.getElementById('print');
     printButton.addEventListener('click', function () {
         // Guarda el contenido original
-        const bodyHTML = document.body.innerHTML;
-
-        // Crea un nuevo contenido solo con el organigrama
-        let printContent = '<div class="organigrama-container" style="page-break-after: always;">'
-            + document.querySelector('.organigrama-container').innerHTML
-            + '</div>';
-
-        // Agrega un salto de página antes de cada tabla y crea el contenido de impresión
-        document.querySelectorAll('.vehiculo').forEach(vehiculo => {
-            printContent += '<div class="vehiculo" style="page-break-before: always;">'
-                + vehiculo.outerHTML
-                + '</div>';
-        });
-
-        // Reemplaza el contenido del body
-        document.body.innerHTML = printContent;
-
-        // Imprime
+      
         window.print();
 
-        // Restaura el contenido original
-        document.body.innerHTML = bodyHTML;
     });
 
 });
